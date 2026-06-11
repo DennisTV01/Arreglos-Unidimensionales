@@ -1,35 +1,42 @@
 import random
 
-# Tamaños de los arreglos
-n = 5
-m = 4
+class Contador:
 
-# Generar arreglos aleatorios entre 1 y 9
-X = [random.randint(1, 9) for _ in range(n)]
-Y = [random.randint(1, 9) for _ in range(m)]
+    def __init__(self, n, m):
+        self.X = [random.randint(1, 9) for _ in range(n)]
+        self.Y = [random.randint(1, 9) for _ in range(m)]
 
-print("Arreglo X:", X)
-print("Arreglo Y:", Y)
+    def mostrar_arreglos(self):
+        print("Arreglo X:", self.X)
+        print("Arreglo Y:", self.Y)
 
-# Dato a buscar
+    def contar_repeticiones(self, dato):
+        contador_x = 0
+        contador_y = 0
+
+        for elemento in self.X:
+            if elemento == dato:
+                contador_x += 1
+
+        for elemento in self.Y:
+            if elemento == dato:
+                contador_y += 1
+
+        return contador_x, contador_y
+
+
+# Programa principal
+obj = Contador(5, 4)
+
+obj.mostrar_arreglos()
+
 dato = int(input("\nIngrese el dato a buscar: "))
 
-contador_x = 0
-contador_y = 0
+cx, cy = obj.contar_repeticiones(dato)
 
-# Buscar en X
-for elemento in X:
-    if elemento == dato:
-        contador_x += 1
-
-# Buscar en Y
-for elemento in Y:
-    if elemento == dato:
-        contador_y += 1
-
-print(f"\nEn el arreglo X se repite {contador_x} veces")
-print(f"En el arreglo Y se repite {contador_y} veces")
-print(f"Total de repeticiones: {contador_x + contador_y}")
+print(f"\nEn el arreglo X se repite {cx} veces")
+print(f"En el arreglo Y se repite {cy} veces")
+print(f"Total de repeticiones: {cx + cy}")
 
 
 
